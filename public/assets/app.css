@@ -1,0 +1,116 @@
+header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+}
+a{
+    text-decoration: none;
+} 
+#main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#mainIndex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#pageContent{
+    padding: 90px  20px;
+    /*background: url(images/humberger1.jpg) center center / cover no-repeat fixed;*/
+    min-height: 100vh;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.navbar div .navbar-brand{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', sans-serif;
+    font-style: italic;
+}
+.card{
+    width: 70%;
+}
+#menuToggle{
+    width: 60px;
+    background-color: rgba(0, 191, 255, 0.864);
+    border-radius: 3px;
+}
+#menuToggle:hover{
+    background-color: #1f16cb7e;
+    border-radius: 3px;
+}
+#mainNav{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    display: none;
+    z-index: 10;
+}
+
+.circle{
+    width: 100%;
+}
+#logoPrjct{
+    width: 40px;
+    height: 40px;
+}
+span{
+    font-size: x-large;
+}
+nav{
+    z-index: 1000 !important;
+}
+#login, #register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #e1d9d9af;
+    padding: 20px;
+    width: 70%;
+    min-height: 100%;
+}
+#login #form, #register #form{
+    width: 95%;
+}
+
+#nameAndFirstName{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+}
+#imgProfil{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: black solid 2px;
+}
+/*@media screen and (min-width:768px) {
+    nav{
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+        width: 100%;
+    }
+    #mainNav{
+        display: flex;
+        background-color: transparent;
+        width: max-content;
+        justify-content: end;
+        align-items: center;
+        top: 0;
+        position: static !important;
+    }
+    #menuToggle{
+        display: none;
+    }
+}*/
