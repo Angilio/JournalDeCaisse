@@ -9,7 +9,7 @@
             <a class="m-2" href=""><img id="imgProfil" src="{{ asset('/assets/images/pdp.jpeg') }}" alt="" srcset=""></a>
             <a class="nav-link btn btn-danger" href="{{ route('logout') }}">Déconnexion</a>
         @else
-            <a class="nav-link " href="">Voir Profil</a>
+            <a class="nav-link " href="" id="fontawesome"><i class="fas fa-user"></i></a>
             <a class="nav-link " href="">Editer Profil</a>
             <a class="nav-link " href="">Déconnexion</a>
         @endauth
