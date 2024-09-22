@@ -7,13 +7,15 @@
         @auth
             <a class="nav-link text-white btn btn-primary m-2" href="{{ route('registration') }}">Créer compte</a>
             <a class="m-2" href=""><img id="imgProfil" src="{{ asset('/assets/images/pdp.jpeg') }}" alt="" srcset=""></a>
-            <a class="nav-link btn btn-danger" href="{{ route('logout') }}">Déconnexion</a>
-        @else
             <a class="nav-link " href="" id="fontawesome"><i class="fas fa-user"></i></a>
             <a class="nav-link " href="">Editer Profil</a>
-            <a class="nav-link " href="">Déconnexion</a>
+            <a class="nav-link btn btn-danger" href="{{ route('logout') }}">Déconnexion</a>
+        @else
+
         @endauth
     </div>
-    <img id="imgProfil" src="{{ asset('/assets/images/pdp.jpeg') }}" alt="" srcset="">
+    @auth
+        <img id="imgProfil" src="{{ asset('/assets/images/pdp.jpeg') }}" alt="" srcset="">
+    @endauth
     <!--img id="menuToggle" src="{{ asset('/assets/images/hamburger.svg') }}" alt="Humberger"-->
 </nav>

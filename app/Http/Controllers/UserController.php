@@ -31,11 +31,8 @@ class UserController extends Controller
     {
         return view('login');
     }*/
-    public function handleLogin(LoginRequest $request){
-        $credentials = $request->validate([
-            'email'=> ['required','email' ],
-            'password'=> ['required'],
-        ]);
+    public function handleLogin(Request $request){
+        $credentials = $request->validated();
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('dashboard');
