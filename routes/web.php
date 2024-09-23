@@ -16,14 +16,11 @@ Route::middleware(['guest'])->group(function(){
     Route::get('/', function () {
         // $creatPerm = Permission::create(['name' => 'Donner privilèges']);
         return view('login');
-    })->name('home');
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    });
 });
 Route::middleware(['auth'])->group(function(){
-    /*Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');*/
+    Route::get('/dashboard', function () {
+        return view('operation.dashboard');
+    })->name('dashboard');
     Route::get('/logout',[UserController::class, 'logout'])->name('logout');
 });

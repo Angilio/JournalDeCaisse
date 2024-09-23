@@ -48,12 +48,20 @@ a{
     margin: 0;
     padding: 0;
     position: absolute;
-    top: 70px;
+    top: 60px;
     right: 0;
     display: none;
     z-index: 10;
 }
-
+#sideBar{
+    padding: 20px;
+    list-style: none;
+    position: fixed;
+    top: 60px;
+    left:0;
+    width: 200px;
+    height: calc(100% - 70px);
+}
 .circle{
     width: 100%;
 }
@@ -62,11 +70,16 @@ a{
     height: 40px;
 }
 span{
-    font-size: x-large;
+    font-size: large;
 }
 nav{
     z-index: 1000 !important;
 }
+/* page de Contenu admin */
+#adminContainer{
+    padding: 80px 20px 20px 220px;
+}
+
 #login, #register{
     display: flex;
     justify-content: center;

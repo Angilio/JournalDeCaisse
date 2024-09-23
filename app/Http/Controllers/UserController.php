@@ -27,15 +27,18 @@ class UserController extends Controller
         return redirect('/login')->with('success', 'Votre compte a été crée avec succes ! Connectez-Vous');
           
     }
-    /*public function login()
+    public function login()
     {
         return view('login');
-    }*/
+    }
     public function handleLogin(Request $request){
-        $credentials = $request->validated();
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8'
+        ]);
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+            return redirect('dashboard');
         } else {
             return redirect()->back()->with('error','Le mail ou le mot de passe n\'est pas correct ! Réessayez');
         }
@@ -44,6 +47,6 @@ class UserController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/home');
+        return redirect('/');
     }
 }
