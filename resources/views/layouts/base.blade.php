@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{asset('assets/images/logoMD.png')}}" type="image/x-icon">
         <title>@yield('title', env('APP_NAME'))</title>
         <link rel="stylesheet" href={{asset('assets/normalize.css')}}>
         <link rel="stylesheet" href={{asset('assets/bootstrap.min.css')}}>
@@ -27,7 +27,7 @@
             @component('layouts.component.sideBar')
                 
             @endcomponent
-            <div id="adminContainer">    
+            <div id="adminContainer" >    
                 @yield('content')
             </div>
         </section>

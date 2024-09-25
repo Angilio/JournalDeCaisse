@@ -1,6 +1,6 @@
-<nav class="navbar navbar-light bg-light p-2">
+<nav class="navbar navbar-light bg-light" p-2">
     <div>
-        <img id="logoPrjct" src="{{asset('/assets/images/favicon.png')}}" alt="">
+        <img id="logoPrjct" src="{{asset('/assets/images/logoMD.png')}}" alt="">
         <a class="navbar-brand h1" href="{{ route('dashboard') }}">{{$name}}</a>
     </div>
     <div id="mainNav" class="bg-light p-2">
