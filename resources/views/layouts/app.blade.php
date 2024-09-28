@@ -16,13 +16,15 @@
         <link rel="stylesheet" href={{asset('assets/app.css')}}>
     </head>
     <body >
-        <header>
-            @component('layouts.component.navbar')
-                @slot('name')
-                    <span class="text-primary h1">Cash</span> <span class="text-dark h1">Ledger</span>
-                @endslot
-            @endcomponent
-        </header>
+        @auth
+            <header class="bg-light">
+                @component('layouts.component.navbar')
+                    @slot('name')
+                        <img id="logoCaisse" src="{{ asset('assets/images/logo.png')}}" alt="" height="60px">
+                    @endslot
+                @endcomponent
+            </header>
+        @endauth
         <section>
             <div id="pageContent">    
                 @yield('content')

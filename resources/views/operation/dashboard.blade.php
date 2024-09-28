@@ -3,7 +3,7 @@
 @section('title', 'Home Page')
 
 @section('content')
-    <div class="w-100" > 
+    <div class="w-100 bg-light"> 
         <div class="container mt-2 text-info">
             <h1 class="text-center">Rapport des quatre dernier mois</h1>
             <canvas id="myChart"></canvas>

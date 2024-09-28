@@ -8,23 +8,26 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('entrers', function (Blueprint $table) {
+        Schema::create('category_enters', function (Blueprint $table) {
             $table->engine= 'InnoDB';
-            $table->integer('Montant');
-            $table->enum('type', ['Hebdomadaire', 'Imprévu']);
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('entrers');
+        Schema::dropIfExists('category_enters');
     }
 };
