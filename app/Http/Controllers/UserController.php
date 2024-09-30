@@ -31,17 +31,17 @@ class UserController extends Controller
     {
         return view('login');
     }
-    public function handleLogin(Request $request){
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8'
-        ]);
+    public function handleLogin(LoginRequest $request){
+        $credentials = $request->validated();
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect('dashboard');
-        } else {
-            return redirect()->back()->with('error','Le mail ou le mot de passe n\'est pas correct ! Réessayez');
         }
+
+        return redirect()->back()->withErrors([
+            'email' => 'Email invalide',
+            'password' => 'Mot de passe incorrect'
+        ]);
         
     }
     public function logout()

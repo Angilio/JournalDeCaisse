@@ -9,7 +9,11 @@
             <a class="nav-link m-0 p-0" href="">Editer Profil</a>
             <a class="nav-link m-0 p-0" href="">Changer Mot de passe</a>
             <a class="nav-link m-0 p-0" href="">Donner privillège</a>
-            <a class="nav-link m-0 p-0" href="{{ route('logout') }}">Déconnexion</a>
+            <form action="{{ route('logout') }}" method="post">
+                @method('delete')
+                @csrf 
+                <button id="deconnect" class="nav-link mt-1 text-white bg-danger p-1">Se déconnecter</button>
+            </form>
         @endauth
     </div>
     @auth

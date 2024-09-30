@@ -4,8 +4,13 @@
 
 @section('content')
     <div id="contenu" class="bg-light w-100">
-        <div>
-
+        <div id="listBtn">
+            <div></div>
+            <div id="twoFirst" class="d-flex justify-content-center">
+                <a href="" class="btn btn-primary">Entrées</a>
+                <a href="" class="btn btn-danger">Sorties</a>
+            </div>
+            <div class="d-flex justify-content-end"><a href="" class="btn btn-primary">Liste des opérations</a></div>
         </div>
         <form action="{{ route( 'operation.store') }}" method="post" id="form" class="vstack gap-2 w-100">
             @csrf
@@ -22,14 +27,15 @@
             <!-- Champ Select Blade -->
             <div class="form-group">
                 <select selected id="category" name="category_enter_id" class="form-control mt-3" >
-                    <option value="">Selectionnez une categories</option>
+                    <option value="">Sélectionnez une categories</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
+            <a href="" class="mt-5 btn btn-primary">Ajouter une ligne</a>
 
-            <div id="grpBtn" class="mt-5">
+            <div id="grpBtn" class="mt-2">
                 <button class="btn btn-primary">Enregistrer</button>
             </div>
         </form>

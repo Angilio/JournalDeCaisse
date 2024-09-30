@@ -24,9 +24,10 @@ class EntreFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'Montant' => ['required', 'integer'],
+            'Montant' => ['required', 'numeric'],
             'created_at' => ['required', 'date'],
-            'Description' => ['required']
+            'Description' => ['required'],
+            
         ];
     }
 }

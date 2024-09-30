@@ -25,13 +25,13 @@ class LoginRequest extends FormRequest
     {
         return [
             'email'=> 'required|email',
-            'password'=> 'required|password|min:8'
+            'password'=> 'required|min:8'
         ];
     }
     public function message()
     {
         return [
-            'email.required'=> 'Le champ Mail est requis',
+            'email.required'=> 'Le champ email est requis',
             'password.required'=> 'Le champ Mot de passe est requis',
             'password.min'=> 'Le champ password doit excéder de 8 caractères'
         ];

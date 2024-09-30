@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PersonnelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
@@ -38,7 +39,10 @@ Route::middleware(['auth'])->group(function(){
     })->name('dashboard');
     Route::get('/operation', [EntrerController::class, 'index'])->name('operation.index');
     Route::post('/operation/store', [EntrerController::class, 'store'])->name('operation.store');
-    Route::get('/users/register',[UserController::class, 'register'])->name('registration');
+    Route::get('/users/register',[UserController::class, 'register'])->name('registration')->middleware('cache.headers');
     Route::post('/users/register',[UserController::class, 'handleRegistration'])->name('registration');
-    Route::get('/logout',[UserController::class, 'logout'])->name('logout');
+    Route::delete('/logout',[UserController::class, 'logout'])->name('logout');
+    Route::prefix('employeurs')->name('personel.')->group(function (){
+        Route::resource('personel', PersonnelController::class)->except(['show']);
+    });
 });
