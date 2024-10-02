@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light p-2">
     <div>
         <a class="navbar-brand" href="{{ route('dashboard') }}">{{$name}}</a>
-        <a href="" class="navbar-brand"> @php   @endphp </a>
+        <a href="" class="navbar-brand">@section('title')</a>
     </div>
     <div id="mainNav" class="p-2">
         @auth
@@ -12,11 +12,22 @@
             <form action="{{ route('logout') }}" method="post">
                 @method('delete')
                 @csrf 
-                <button id="deconnect" class="nav-link mt-1 text-white bg-danger p-1">Se déconnecter</button>
+                <button id="deconnect" class="nav-link mt-1 text-white bg-danger p-1"><i class="fa-solid fa-trash-can"></i> Se déconnecter</button>
             </form>
         @endauth
     </div>
     @auth
-     <img id="imgProfil" class="menuToggle" src="{{ asset('/assets/images/pdp.jpeg') }}" alt="">
+    <div class="d-flex gap-2">
+        <div class="search-container d-flex align-items-center">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Entrer votre recherche ici" />
+        </div>
+        <a href="" id="pamaeter" class="bg-light"><i class="fa-solid fa-gear"></i></a>
+        <div class="d-flex">
+            <a id="lightMode" href=""><i class="fa-regular fa-sun"></i></a>
+            <a id="darkMode" href=""><i class="fa-solid fa-moon"></i></a>
+        </div>
+        <img id="imgProfil" class="menuToggle" src="{{ asset('/assets/images/pdp.jpeg') }}" alt="">
+    </div>
     @endauth
 </nav>

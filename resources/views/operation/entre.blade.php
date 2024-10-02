@@ -33,10 +33,10 @@
                     @endforeach
                 </select>
             </div>
-            <a href="" class="mt-5 btn btn-primary">Ajouter une ligne</a>
+            <a href="" class="mt-5 btn btn-primary"> <i class="fa-solid fa-plus"></i> Ajouter une ligne</a>
 
             <div id="grpBtn" class="mt-2">
-                <button class="btn btn-primary">Enregistrer</button>
+                <button class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Enregistrer</button>
             </div>
         </form>
     </div>

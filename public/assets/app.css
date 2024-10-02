@@ -17,6 +17,7 @@ a{
     text-decoration: none;
     color: #000000be;
 }
+
 input{
     border: none;
     border-bottom: solid black 1px;
@@ -45,6 +46,31 @@ input{
 .navbar div .navbar-brand{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', sans-serif;
     font-style: italic;
+}
+/* menu d'en-tête */
+#lightMode{
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    color: white;
+    border-radius: 15px 0 0 15px;
+}
+#darkMode{
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e4dfd7e5;
+    border-radius:0 15px 15px 0;
+}
+#pamaeter{
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #form {
@@ -95,12 +121,18 @@ input{
 }
 #sideBar{
     padding: 20px;
+    gap: 20px;
     list-style: none;
     position: fixed;
     top: 60px;
     left:0;
     width: 150px;
     height: calc(100% - 70px);
+}
+
+#sideBar a{
+    display: flex;
+    gap: 10px;
 }
 .circle{
     width: 100%;
@@ -167,6 +199,78 @@ header, #sideBar{
     height: 40px;
     border-radius: 50%;
     height: 2.5em;
+}
+/* Conteneur du champ fichier personnalisé */
+.file-input-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style du bouton personnalisé */
+.file-input-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f2f4f6;
+    border: none;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Masquer le champ fichier par défaut */
+.file-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+
+/* Icône caméra */
+.file-input-button i {
+    font-size: 20px;
+    color: #393333;
+}
+
+.search-container {
+    position: relative;
+    width: 200px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 20px 10px 40px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.search-input::placeholder {
+    color: #575555;
+    font-size: 14px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px; 
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #aaa;
+    pointer-events: none;
+}
+#input{
+    display: flex;
+    justify-content: center;
 }
 /*@media screen and (min-width:768px) {
     nav{

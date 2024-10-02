@@ -11,7 +11,7 @@
         <script src={{asset('assets/jquery-3.4.1.min.js')}}></script>
         <script src={{asset('assets/menu.js')}}></script>
         <script src={{asset('assets/chart.min.js')}}></script>
-        <!--script src={{asset('assets/fontawesome.min.js')}} ></script-->
+        <link rel="stylesheet" href="{{ asset('assets/fontawsome/css/all.min.css') }}">
         <link rel="stylesheet" href="{{asset('assets/icons/css/bootstrap-icons.css')}}">
         <link rel="stylesheet" href={{asset('assets/app.css')}}>
     </head>

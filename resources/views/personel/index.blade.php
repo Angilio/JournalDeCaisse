@@ -16,9 +16,20 @@
                 @if ( session()->has('error') )
                     <div class="alert alert-danger">{{ session()->get('error') }}</div>
                 @endif
+
+                <div class="file-input-wrapper d-flex justify-content-center gap-2">
+                    <button class="file-input-button d-flex justify-content-center">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <div id="input">
+                        <input type="file" class="file-input" accept=".jpg, .jpeg, .png" name="image"/>
+                    </div>
+                </div>
+                <p class="file-text d-flex justify-content-center ">Insérer une image</p>
                 
+
                 <div id="nameAndFirstName">
-                    <div class="form-group w-80">
+                    <div class="form-group mb-4 w-80">
                         <input id="category" placeholder="Nom" type="text" class="form-control w-80" id="name" name="name" value="{{ old('name') }}"/>
                         @error('name')
                             <div class="text mb-2 text-danger">
@@ -28,7 +39,7 @@
                     </div>
                     
 
-                    <div class="form-group w-80">
+                    <div class="form-group mb-4 w-80">
                         <input id="category" placeholder="Prénoms" type="text" class="form-control w-80" id="firstName" name="firstName" value="{{ old('firstName') }}" />
                         @error('firstName')
                             <div class="text mb-2 text-danger">
@@ -39,7 +50,7 @@
                 </div>
 
                 <div id="nameAndFirstName">
-                    <div class="form-group w-80">
+                    <div class="form-group mb-4 w-80">
                         <input id="category" placeholder="Nom" type="text" class="form-control w-80" id="name" name="name" value="{{ old('name') }}"/>
                         @error('name')
                             <div class="text mb-2 text-danger">
@@ -49,7 +60,7 @@
                     </div>
                     
 
-                    <div class="form-group w-80">
+                    <div class="form-group mb-4 w-80">
                         <input id="category" placeholder="Prénoms" type="text" class="form-control w-80" id="firstName" name="firstName" value="{{ old('firstName') }}" />
                         @error('firstName')
                             <div class="text mb-2 text-danger">
@@ -60,7 +71,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center mt-3 w-80">
-                    <button type="submit" class="btn btn-primary mt-2 w-80">Ajouter utilisateur</button>
+                    <button type="submit" class="btn btn-primary mt-2 w-80"><i class="fa-solid fa-plus"></i> Ajouter un personel</button>
                 </div>
             </form>
         </div>
