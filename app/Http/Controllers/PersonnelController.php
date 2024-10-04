@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePersonnelRequest;
 use App\Models\Personnel;
 use Illuminate\Http\Request;
 
@@ -18,13 +19,18 @@ class PersonnelController extends Controller
     
     public function create()
     {
-        return view('personel.index');
+        return view('personel.index',
+        [
+            'caisse' => Personnel::all()
+        ]
+        );
     }
 
     
-    public function store(Request $request)
+    public function store(CreatePersonnelRequest $request)
     {
-        //
+        $personel = Personnel::create($request->validated());
+        return redirect(route('personel.personel.index'));
     }
 
 

@@ -12,7 +12,7 @@
             <form action="{{ route('logout') }}" method="post">
                 @method('delete')
                 @csrf 
-                <button id="deconnect" class="nav-link mt-1 text-white bg-danger p-1"><i class="fa-solid fa-trash-can"></i> Se déconnecter</button>
+                <button id="deconnect" class="nav-link mt-1 text-white bg-danger p-1"> Se déconnecter</button>
             </form>
         @endauth
     </div>
@@ -20,7 +20,7 @@
     <div class="d-flex gap-2">
         <div class="search-container d-flex align-items-center">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" class="search-input" placeholder="Entrer votre recherche ici" />
+            <input type="search" class="search-input" placeholder="Entrer votre recherche ici" />
         </div>
         <a href="" id="pamaeter" class="bg-light"><i class="fa-solid fa-gear"></i></a>
         <div class="d-flex">

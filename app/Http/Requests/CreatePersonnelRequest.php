@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EntreFormRequest extends FormRequest
+class CreatePersonnelRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,11 @@ class EntreFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'Montant' => ['required', 'numeric'],
-            'created_at' => ['required', 'date'],
-            'Description' => ['required'],
-            'category_enter_id' => ['required', 'exists:category_enters,id']
+            'name' => ['required', 'min:2'],
+            'firstName' => ['required', 'min:4'],
+            'Contact' => ['required'],
+            'email' => ['required', 'email','unique:personnels'],
+
         ];
     }
 }

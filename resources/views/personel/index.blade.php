@@ -17,15 +17,22 @@
                     <div class="alert alert-danger">{{ session()->get('error') }}</div>
                 @endif
 
-                <div class="file-input-wrapper d-flex justify-content-center gap-2">
-                    <button class="file-input-button d-flex justify-content-center">
-                        <i class="fas fa-camera"></i>
-                    </button>
-                    <div id="input">
-                        <input type="file" class="file-input" accept=".jpg, .jpeg, .png" name="image"/>
+                <div class="text-center">
+                    <div class="file-container">
+                        <div class="file-input-wrapper text-center">
+                            <button class="file-input-button">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <div class="d-flex justify-content-center"><input type="file" class="file-input" accept=".jpg, .jpeg, .png" name="image"/></div>
+                            <p class="file-text" title="Choisir une image de profile">Choisir une image</p>
+                            @error('image')
+                            <div class="text mb-2 text-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        </div>
                     </div>
                 </div>
-                <p class="file-text d-flex justify-content-center ">Insérer une image</p>
                 
 
                 <div id="nameAndFirstName">
@@ -51,8 +58,8 @@
 
                 <div id="nameAndFirstName">
                     <div class="form-group mb-4 w-80">
-                        <input id="category" placeholder="Nom" type="text" class="form-control w-80" id="name" name="name" value="{{ old('name') }}"/>
-                        @error('name')
+                        <input id="category" placeholder="E-mail" type="text" class="form-control w-80" id="email" name="email" value="{{ old('email') }}"/>
+                        @error('email')
                             <div class="text mb-2 text-danger">
                                 {{ $message }}
                             </div>
@@ -61,8 +68,8 @@
                     
 
                     <div class="form-group mb-4 w-80">
-                        <input id="category" placeholder="Prénoms" type="text" class="form-control w-80" id="firstName" name="firstName" value="{{ old('firstName') }}" />
-                        @error('firstName')
+                        <input id="category" placeholder="Contact" type="number" class="form-control w-80" id="Contact" name="Contact" value="{{ old('Contact') }}" />
+                        @error('Contact')
                             <div class="text mb-2 text-danger">
                                 {{ $message }}
                             </div>
