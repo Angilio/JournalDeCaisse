@@ -28,7 +28,7 @@ class CreatePersonnelRequest extends FormRequest
             'firstName' => ['required', 'min:4'],
             'Contact' => ['required'],
             'email' => ['required', 'email','unique:personnels'],
-
+            'image' => ['image']
         ];
     }
 }

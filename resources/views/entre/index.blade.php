@@ -9,7 +9,7 @@
                 <a href="" class="btn btn-primary">Entrées</a>
                 <a href="" class="btn btn-danger">Sorties</a>
             </div>
-            <div class="d-flex justify-content-end"><a href="{{ route('operation.create')}}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Nouvelle opération</a></div>
+            <div class="d-flex justify-content-end"><a href="{{ route('entre.entres.create')}}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Nouvelle opération</a></div>
         </div>
         <div class="mt-5 p-4" id="form">
             <table class="table table-stripted">
@@ -23,10 +23,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($caisse as $c)
+                    @foreach ($entre as $c)
                         <tr>
                             <td>{{ $c->Description }}</td>
-                            <td>{{ $c->category_enter_id }}</td>
+                            <td>{{$c->category_enter_id }}</td>
                             <td>{{ $c->created_at }}</td>
                             <td>{{ $c->Montant }}</td>
                             <td class="text-end">

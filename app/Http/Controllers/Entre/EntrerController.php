@@ -4,57 +4,60 @@ namespace App\Http\Controllers\Entre;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EntreFormRequest;
-use App\Models\Caisse;
 use App\Models\CategoryEnter;
+use App\Models\Entre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 class EntrerController extends Controller
 {
-
-    public function index() {
-        return view('operation.index',
+    
+    public function index()
+    {
+        return view('entre.index',
         [
-                'caisse' => Caisse::all()
+                'entre' => Entre::all()
             ]);
     }
 
-
-    public function create() {
-        return view('operation.entre',
+   
+    public function create()
+    {
+        return view('entre.create',
         [
-                'caisse' => new Caisse(),
+                'entre' => new Entre(),
                 'categories' => CategoryEnter::all()
             ]);
     }
 
-    public function store(Caisse $caisse, EntreFormRequest $Request) {
-        $caisse->Montant = $Request->Montant;
-        $caisse->Description = $Request->Description;
-        $caisse->created_at = $Request->created_at;
-        $caisse->user_id = Auth::id();
-        $caisse->category_enter_id = $Request->category_enter_id;
-        $caisse->save();
-        return to_route('operation.index');  
+   
+    public function store(Entre $entre, EntreFormRequest $Request)
+    {
+        dd($Request->validated());
+        $entre->Montant = $Request->Montant;
+        $entre->Description = $Request->Description;
+        $entre->created_at = $Request->created_at;
+        $entre->user_id = Auth::id();
+        $entre->category_enter_id = $Request->category_enter_id;
+        $entre->save();
+    }
+
+    public function edit($id)
+    {
+        //
+    }
+
+    
+    public function update(Request $request, $id)
+    {
+        //
     }
 
 
-    public function edit(Caisse $caisse)
+    public function destroy($id)
     {
-        $caisse = Caisse::find($caisse);
-        return view('operation.edit', ['caisse' => $caisse]);
-    }
-
-    public function update( $request, $id)
-    {
-        
-    }
-
-
-    public function destroy(Caisse $caisse)
-    {
-        $caisse->find($caisse);
-        $caisse->delete();
-        redirect(to_route('operation.index'));
+        //
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\CategoryEnter;
-use App\Models\User;
+use App\Models\Entre;
+use App\Models\Sortie;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,9 +16,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('caisses', function (Blueprint $table) {
-            $table->engine= 'InnoDB';
-            $table->id();
-            $table->integer('Montant');
+            $table->foreignIdFor(Entre::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Sortie::class)->constrained()->cascadeOnDelete();
         });
     }
 

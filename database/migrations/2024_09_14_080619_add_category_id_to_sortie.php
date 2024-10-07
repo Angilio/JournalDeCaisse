@@ -22,12 +22,7 @@ return new class extends Migration
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Beneficiaire::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Personnel::class)->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Caisse::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Fournisseur::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-        });
-        Schema::table('entrers', function (Blueprint $table) {
-            $table->foreignIdFor(Caisse::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
         });
     }
@@ -43,10 +38,6 @@ return new class extends Migration
             $table->dropForeignIdFor(Personnel::class);
             $table->dropForeignIdFor(Caisse::class);
             $table->dropForeignIdFor(Fournisseur::class);
-            $table->dropForeignIdFor(User::class);
-        });
-        Schema::table('entrers', function (Blueprint $table) {
-            $table->dropForeignIdFor(Caisse::class);
             $table->dropForeignIdFor(User::class);
         });
     }

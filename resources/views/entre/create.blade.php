@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
-@section('title', 'Liste des opérations')
+@section('title', $entre->exists ? 'Editer une entrée' : 'Aouter une entrée')
+
 
 @section('content')
     <div id="contenu" class="bg-light w-100">
@@ -10,21 +11,20 @@
                 <a href="" class="btn btn-primary">Entrées</a>
                 <a href="" class="btn btn-danger">Sorties</a>
             </div>
-            <div class="d-flex justify-content-end"><a href="{{ route('operation.index') }}" class="btn btn-primary">Liste des opérations</a></div>
+            <div class="d-flex justify-content-end"><a href="" class="btn btn-primary">Liste des opérations</a></div>
         </div>
-        <form action="{{ route( 'operation.store') }}" method="post" id="form" class="vstack gap-2 w-100">
+        <form action="{{ route($entre->exists ? 'entre.entres.update' : 'entre.entres.store', $entre) }}" method="post" id="form" class="vstack gap-2 w-100">
             @csrf
-            @method('post')
+            @method($entre->exists ? 'put' : 'post')
 
             <div class="row">
-                @include('shared.input' , ['placeholder' => 'Date','class' => 'col', 'name'=> 'created_at', 'value'=> $caisse->created_at])
+                @include('shared.input' , ['type' => 'date','placeholder' => 'Date','class' => 'col', 'name'=> 'created_at', 'value'=> $entre->created_at])
                 <div class="col row">
-                    @include('shared.input' , ['type' => 'text','class' => ' col', 'name'=> 'Description', 'value'=>$caisse->Description])
-                    @include('shared.input' , ['type' => 'number','class' => 'col', 'name'=> 'Montant', 'value'=> $caisse->Montant])   
+                    @include('shared.input' , ['type' => 'text','class' => ' col', 'name'=> 'Description', 'value'=>$entre->Description])
+                    @include('shared.input' , ['type' => 'number','class' => 'col', 'name'=> 'Montant', 'value'=> $entre->Montant])   
                 </div>
             </div>
 
-            <!-- Champ Select Blade -->
             <div class="form-group">
                 <select selected id="category" name="category_enter_id" class="form-control mt-3 @error('category_enter_id') is-invalid @enderror" >
                     <option value="">Sélectionnez une categories</option>
@@ -38,10 +38,15 @@
                     </div>
                 @enderror
             </div>
-            <a href="" class="mt-5 btn btn-primary"> <i class="fa-solid fa-plus"></i> Ajouter une ligne</a>
-
+            
             <div id="grpBtn" class="mt-2">
-                <button class="btn btn-primary"> Enregistrer</button>
+                <button class="btn btn-primary"> 
+                    @if ($entre->exists)
+                        Modifier
+                    @else
+                        Enregistrer
+                    @endif
+                </button>
             </div>
         </form>
     </div>

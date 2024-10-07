@@ -13,7 +13,6 @@ class Personnel extends Model
         'name',
         'firstName',
         'Contact',
-        'sexe',
         'email',
         'image'
     ];

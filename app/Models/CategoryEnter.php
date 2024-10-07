@@ -12,8 +12,8 @@ class CategoryEnter extends Model
         'name'
     ];
 
-    public function caisses(){
-        return $this->hasMany(Caisse::class);
+    public function entres(){
+        return $this->belongsTo(Entre::class);
     }
     
 }

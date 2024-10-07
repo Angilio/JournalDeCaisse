@@ -15,10 +15,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('caisses', function (Blueprint $table) {
-            $table->engine= 'InnoDB';
+        Schema::create('entres', function (Blueprint $table) {
             $table->id();
+            $table->engine= 'InnoDB';
             $table->integer('Montant');
+            $table->string('Description');
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(CategoryEnter::class)->constrained()->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 
@@ -29,8 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('caisses', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('entres');
     }
 };

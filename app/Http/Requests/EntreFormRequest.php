@@ -27,7 +27,8 @@ class EntreFormRequest extends FormRequest
             'Montant' => ['required', 'numeric'],
             'created_at' => ['required', 'date'],
             'Description' => ['required'],
-            'category_enter_id' => ['required', 'exists:category_enters,id']
+            'category_enter_id' => ['required', 'exists:category_enters,id'],
+            'User_id' => ['required', 'exists:users,id']
         ];
     }
 }

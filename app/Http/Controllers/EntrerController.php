@@ -3,51 +3,58 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EntreFormRequest;
-use App\Models\Caisse;
 use App\Models\CategoryEnter;
-use App\Models\Entrer;
+use App\Models\Entre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class EntrerController extends Controller
 {
-    public function index() {
-        return view('operation.index',
-        [
-                'caisse' => Caisse::all()
-            ]);
-    }
-    public function create() {
-        return view('operation.entre',
-        [
-                'caisse' => new Caisse(),
-                'categories' => CategoryEnter::all()
-            ]);
-    }
-    public function store(Caisse $caisse, EntreFormRequest $Request) {
-        $caisse->Montant = $Request->Montant;
-        $caisse->Description = $Request->Description;
-        $caisse->created_at = $Request->created_at;
-        $caisse->user_id = Auth::id();
-        $caisse->category_enter_id = $Request->category_enter_id;
-        $caisse->save();
-        return to_route('operation.index');  
-    }
-
-    public function edit(Caisse $caisse)
+    public function index()
     {
-        //
+        return view('entre.index',
+        [
+                'entre' => Entre::all()
+            ]);
     }
 
    
-    public function update(Request $request, $id)
+    public function create()
+    {
+        $entre = new Entre();
+        return view('entre.create',
+        [
+                'categories' => CategoryEnter::all()
+            ]);
+    }
+
+   
+    public function store(EntreFormRequest $Request): void
+    {
+        $entrer =$Request->validate([
+            'Montant' => ['required', 'numeric'],
+            'created_at' => ['required', 'date'],
+            'Description' => ['required'],
+            'category_enter_id' => ['required', 'exists:category_enters,id'],
+            'User_id' => ['required', 'exists:users,id']
+        ]);
+        Entre::create($entrer);
+    }
+
+    public function edit($id)
     {
         //
     }
 
     
-    public function destroy($caisse)
+    public function update(Request $request, $id)
     {
-        
+        //
+    }
+
+
+    public function destroy($id)
+    {
+        //
     }
 }

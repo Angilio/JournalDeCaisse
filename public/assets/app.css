@@ -280,24 +280,11 @@ header, #sideBar{
     pointer-events: none; /* Désactiver l'interaction avec l'icône */
 }
 #personnalContainer{
-    display: flex;
+    display: grid;
     gap: 20px;
     margin-top: 50px;
 }
-#card{
-    background-color: white;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-}
-#imgPerso{
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
+
 
 
 /*@media screen and (min-width:768px) {

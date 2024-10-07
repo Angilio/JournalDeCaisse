@@ -30,8 +30,8 @@ class User extends Authenticatable
     public function sorties(){
         return $this->hasMany(Sortie::class);
     }
-    public function entrers(){
-        return $this->hasMany(Entrer::class);
+    public function entres(){
+        return $this->hasMany(Entre::class);
     }
 
     /**
