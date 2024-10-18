@@ -1,46 +1,65 @@
 <?php
 
-use App\Http\Controllers\PersonnelController;
+use App\Http\Controllers\categoryController;
+use App\Http\Controllers\fournisseurController;
+use App\Http\Controllers\personnelController;
+use App\Models\Category_enter;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\Entre\EntrerController;
-use App\Http\Controllers\UserController;
-use Illuminate\Routing\RouteFileRegistrar;
+use App\Http\Controllers\ProfileController;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
-use App\Models\CategoryEnter;
-use Spatie\Permission\Models\Permission;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    //$createSupAdmin = Role::create(['name' => 'SuperAdmin']);
+    //$createAdmin = Role::create(['name' => 'Admin']);
+    //$creatPerm = Permission::create(['name' => 'Ajout utilisateur']);
+    //$creatPerm = Permission::create(['name' => 'Changement de mot de pass']);
+    //$creatPerm = Permission::create(['name' => 'recevoir historique']);
+    //$creatPerm = Permission::create(['name' => 'Donner privilège']);
+    //$roleAdmin = Role::find(1);
+    //$roleAdmin->syncPermissions(Permission::all()); 
+    //$user = User::find(1); // L'ID de l'utilisateur (Donner toutes les permission à un superAdmin)
+    //$user->assignRole('SuperAdmin'); //assigner le rôle SuperAdmin à User 1
 
 
-Route::middleware(['guest'])->group(function(){
-    Route::get('/users/login',[UserController::class, 'login'])->name('login');
-    Route::post('/users/login',[UserController::class, 'handleLogin'])->name('login');
-    Route::get('/', function () {
-        //$creatPerm = Permission::create(['name' => 'Donner privilèges']);
-        //$roleAdmin = Role::find(1);
-        //$roleAdmin->syncPermissions(Permission::all()); (Donner tous les rôle à un Admin)
-        //$user = User::find(1); // L'ID de l'utilisateur
-        //$user->assignRole('Admin'); //assigner le rôle Admin à l'User 1
-        
-        // Création de catégory d'entrer
-        /*CategoryEnter::create([
-            'name' => 'Mensuel'
-        ]);
-        CategoryEnter::create([
-            'name' => 'Cas exceptionel'
-        ]);*/
-
-        return view('login');
-    });
+    return view('auth.login');
 });
-Route::middleware(['auth'])->group(function(){
-    Route::get('/dashboard', function () {
-        return view('entre.dashboard');
-    })->name('dashboard');
-    Route::get('/users/register',[UserController::class, 'register'])->name('registration');
-    Route::post('/users/register',[UserController::class, 'handleRegistration'])->name('registration');
-    Route::prefix('entre')->name('entre.')->group(function () {
-        Route::resource('entres', EntrerController::class)->except(['show']);
-    });
-    Route::delete('/logout',[UserController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard', function () {
+    //$categoryEntre = Category_enter::create(['name' => 'Mensiel']);
+    //$categoryEntre = Category_enter::create(['name' => 'Extraordinaire']);
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+require __DIR__ . '/auth.php';
+
+Route::middleware('auth')->prefix('fournisseur')->name('fourni.')->group( function(){
+    Route::resource('fournisseur', fournisseurController::class)->except(['show']);
+});
+
+Route::middleware('auth')->prefix('personnel')->name('perso.')->group( function(){
+    Route::resource('personnel', personnelController::class)->except(['show']);
+});
+
+Route::middleware('auth')->prefix('category')->name('cate.')->group( function(){
+    Route::resource('category', categoryController::class)->except(['show']);
 });

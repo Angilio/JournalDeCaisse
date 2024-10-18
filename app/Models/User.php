@@ -4,16 +4,21 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-
+/**
+ * @mixin IdeHelperUser
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,17 +26,19 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'firstName',
-        'Pseudo',
         'email',
         'password',
-        'pdp',
+        'image'
     ];
-    public function sorties(){
-        return $this->hasMany(Sortie::class);
+
+    public function entre():HasMany
+    {
+        return $this->hasMany(Entrer::class);
     }
-    public function entres(){
-        return $this->hasMany(Entre::class);
+
+    public function sortie():HasMany
+    {
+        return $this->hasMany(Sortie::class);
     }
 
     /**

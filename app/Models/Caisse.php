@@ -4,19 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-
+/**
+ * @mixin IdeHelperCaisse
+ */
 class Caisse extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'Montant',
-        'entres_id',
-        'sorties_id'
+        'Sold'
     ];
-    public function sorties(){
-        return $this->hasMany(Sortie::class);
-    }
-    
-    
+
 }

@@ -17,6 +17,64 @@ a{
     text-decoration: none;
     color: #000000be;
 }
+#fourniContainer{
+    display: flex;
+    gap: 20px;
+}
+
+#fournisseur{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding:10px;
+    width: 200px;
+}
+
+#formulaire{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sideBar a.active {
+    background-color: blue; /* Change la couleur de fond */
+    color: white; /* Change la couleur du texte */
+    padding: 5px;
+    border-radius: 5px;
+    width: max-content;
+}
+
+#personnel{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding:10px;
+    width: max-content;
+}
+
+
+#btnWithAdd{
+    display: grid;
+    gap: 5px;
+}
+
+#btnAjouter{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: solid white 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 input{
     border: none;
@@ -200,85 +258,42 @@ header, #sideBar{
     border-radius: 50%;
     height: 2.5em;
 }
-
-/* Conteneur du champ */
-.file-input-wrapper {
-    position: relative;
-    display: inline-block;
-}
-
-/* Bouton personnalisé rond avec icône */
-.file-input-button {
-    width: 60px;
-    height: 60px;
+/* Stylisation de bouton d'ajout d'image */
+.file-label {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    background-color: #b5b8bb;
-    border: none;
-    color: white;
-    font-size: 24px;
+    background-color: #f0f0f0;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: center;
     cursor: pointer;
-}
-.file-input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Icône de caméra */
-.file-input-button i {
-    font-size: 30px;
-    color: #333;
-    cursor: pointer;
+.file-label i {
+    font-size: 40px;
+    color: #777;
 }
 
-/* Texte sous le bouton */
-.file-text {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #333;
-    text-align: center;
-}
-#input{
+/* Centrer le label dans le conteneur */
+.form-group {
     display: flex;
     justify-content: center;
 }
 
-
-.search-container {
-    position: relative;
-    width: 200px;
+/* Ajouter un effet visuel au survol */
+.file-label:hover {
+    background-color: #e0e0e0;
+    border-color: #aaa;
 }
 
-.search-input {
-    width: 200px;
-    padding: 10px 20px 10px 40px; /* Espace à gauche pour l'icône */
-    border-radius: 25px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    box-sizing: border-box;
+/* Masquer le champ input de type file */
+input[type="file"] {
+    display: none;
 }
 
-.search-input::placeholder {
-    color: #aaa;
-    font-size: 14px;
-}
-
-.search-icon {
-    position: absolute;
-    left: 10px; /* Positionner l'icône à gauche */
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: #aaa;
-    pointer-events: none; /* Désactiver l'interaction avec l'icône */
-}
 #personnalContainer{
     display: grid;
     gap: 20px;
