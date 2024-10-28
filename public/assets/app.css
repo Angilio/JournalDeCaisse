@@ -18,9 +18,12 @@ a{
     color: #000000be;
 }
 #fourniContainer{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
     gap: 20px;
 }
+
+
 
 #fournisseur{
     display: flex;
@@ -39,13 +42,64 @@ a{
     justify-content: center;
     align-items: center;
 }
+#selectSortie{
+    border: none; 
+    border-bottom:solid black 1px; 
+    border-radius: 0; 
+    background-color:transparent;
+    width: 100%;
+}
+
+#soldDepenseEntre{
+    padding: 20px;
+}
+#soldDepenseEntre #sold,#soldDepenseEntre #Entre,#soldDepenseEntre #Depense{
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#soldDepenseEntre #sold p:first-of-type,#soldDepenseEntre #Entre p:first-of-type,#soldDepenseEntre #Depense p:first-of-type{
+    padding: 0;
+    margin: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+}
+#soldDepenseEntre #sold p:first-of-type{
+    background-color: #d9d9e9e8;
+    color: blue;
+}
+
+#soldDepenseEntre #Entre p:first-of-type{
+    background-color: #85e2bbc9;
+    color: #33ff00;
+}
+
+#soldDepenseEntre #Depense p:first-of-type{
+    background-color: #ac4e8db4;
+    color: #ff00d4;
+}
+
+#select{
+    border: none; 
+    border-bottom:solid black 1px; 
+    border-radius: 0; 
+    background-color:transparent;
+    width: 40%;
+}
 
 #sideBar a.active {
-    background-color: blue; /* Change la couleur de fond */
-    color: white; /* Change la couleur du texte */
-    padding: 5px;
-    border-radius: 5px;
-    width: max-content;
+    color: blue; /* Change la couleur du texte */
+    padding-left: 10px;
 }
 
 #personnel{
@@ -149,8 +203,7 @@ input{
     justify-content: center;
     align-items: center;
     padding: 2px;
-    gap: 2px
-    ;
+    gap: 2px;
     border-radius: 5px;
 
 }
@@ -259,7 +312,7 @@ header, #sideBar{
     height: 2.5em;
 }
 /* Stylisation de bouton d'ajout d'image */
-.file-label {
+#form .file-label {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -272,19 +325,19 @@ header, #sideBar{
     overflow: hidden;
 }
 
-.file-label i {
+#form .file-label i {
     font-size: 40px;
     color: #777;
 }
 
 /* Centrer le label dans le conteneur */
-.form-group {
+#form .form-group {
     display: flex;
     justify-content: center;
 }
 
 /* Ajouter un effet visuel au survol */
-.file-label:hover {
+#form .file-label:hover {
     background-color: #e0e0e0;
     border-color: #aaa;
 }

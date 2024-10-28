@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\categoryController;
+use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\entreController;
 use App\Http\Controllers\fournisseurController;
 use App\Http\Controllers\personnelController;
+use App\Http\Controllers\sortieController;
 use App\Models\Category_enter;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -32,16 +35,20 @@ Route::get('/', function () {
     //$roleAdmin->syncPermissions(Permission::all()); 
     //$user = User::find(1); // L'ID de l'utilisateur (Donner toutes les permission à un superAdmin)
     //$user->assignRole('SuperAdmin'); //assigner le rôle SuperAdmin à User 1
-
-
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
+Route::middleware('auth')->name('dashboard.')->group( function(){
+    Route::resource('dashboard', dashboardController::class)->except(['show','edit','store','update','destroy','create']);
+});
+
+/*Route::get('/dashboard', function () {
     //$categoryEntre = Category_enter::create(['name' => 'Mensiel']);
     //$categoryEntre = Category_enter::create(['name' => 'Extraordinaire']);
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('dashboard',[
+
+    ]);
+})->middleware(['auth', 'verified'])->name('dashboard');*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -62,4 +69,12 @@ Route::middleware('auth')->prefix('personnel')->name('perso.')->group( function(
 
 Route::middleware('auth')->prefix('category')->name('cate.')->group( function(){
     Route::resource('category', categoryController::class)->except(['show']);
+});
+
+Route::middleware('auth')->prefix('entre')->name('entre.')->group( function(){
+    Route::resource('entre', entreController::class)->except(['show']);
+});
+
+Route::middleware('auth')->prefix('sortie')->name('sortie.')->group( function(){
+    Route::resource('sortie', sortieController::class)->except(['show']);
 });

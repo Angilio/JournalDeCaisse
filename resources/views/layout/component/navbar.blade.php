@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light p-2">
     <div>
-        <a class="navbar-brand" href="{{ route('dashboard') }}">{{$name}}</a>
+        <a class="navbar-brand" href="{{ route('dashboard.dashboard.index') }}">{{$name}}</a>
         <a href="" class="navbar-brand">@section('title')</a>
     </div>
     <div id="mainNav" class="p-2">

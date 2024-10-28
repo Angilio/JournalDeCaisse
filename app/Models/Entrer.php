@@ -15,7 +15,10 @@ class Entrer extends Model
     use HasFactory;
     protected $fillable =[
         'Montant',
-        'Description'
+        'Description',
+        'category_enter_id',
+        'user_id',
+        'date'
     ];
 
     public function Category_Enter():BelongsTo

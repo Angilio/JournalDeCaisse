@@ -12,7 +12,7 @@
                         Ajouter un nouveau personnel
                     @endif
             </h3>
-            <a href="{{ route('fourni.fournisseur.index') }}" class="btn btn-primary">Voir les catéries existant</a>
+            <a href="{{ route('perso.personnel.index') }}" class="btn btn-primary">Liste des personnels</a>
         </div>
         <div id="formulaire">
             <form class="p-5 w-50" id="form" action="{{ route($personnel->exists ? 'perso.personnel.update' : 'perso.personnel.store', $personnel ) }}" method="post" enctype="multipart/form-data">
@@ -20,13 +20,10 @@
                 @method($personnel->exists ? 'put' : 'post')
 
                 <div class="form-group d-flex flex-column justify-content-center align-items-center">
-                    <!-- Label agissant comme le champ de téléchargement -->
                     <label for="file-input" class="file-label">
-                        <i class="fas fa-camera"></i> <!-- Icône de l'appareil photo (ex : FontAwesome) -->
+                        <i class="fas fa-camera"></i> 
                         <input type="file" id="file-input" class="form-control d-none @error('Image') is-invalid @enderror" name="Image" accept=".png, .jpeg, .jpg">
                     </label>
-
-                    <!-- Texte en dessous du champ de téléchargement -->
                     <p class="file-text">Choisir une image</p>
 
                     @error('Image')

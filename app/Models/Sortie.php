@@ -15,7 +15,13 @@ class Sortie extends Model
     use HasFactory;
     protected $fillable = [
         'Montant',
-        'Context'
+        'Context',
+        'category_id',
+        'personnel_id',
+        'user_id',
+        'beneficiaire_id',
+        'date',
+        'Quantity'
     ];
 
 

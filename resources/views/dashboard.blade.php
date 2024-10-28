@@ -4,9 +4,32 @@
 
 @section('content')
     <div id="contenu" class="w-100 bg-light"> 
+        <div id="soldDepenseEntre" class="d-flex justify-content-between p-10">
+            <div id="sold">
+                <P><i class="fa-solid fa-clipboard"></i></P>
+                <P class="fw-bold">
+                    Sold Actuel <br>
+                    {{ $caisse->Sold }} Ar
+                </P>
+            </div>
+            <div id="Entre">
+                <P><i class="fa-solid fa-truck-fast"></i></P>
+                <P class="fw-bold">
+                    Total des Entrées<br>
+                    {{ $entre }} Ar
+                </P>
+            </div>
+            <div id="Depense">
+                <P><i class="fa-solid fa-clipboard"></i></P>
+                <P class="fw-bold">
+                    Total de Dépense<br>
+                    {{ $sortie }} Ar
+                </P>
+            </div>
+        </div>
         <div class="container mt-2 text-dark">
             <p class="h4 d-flex justify-content-between">Resumé du mois <span class="bg-light">{{date('d/m/Y')}}</span></p>
-            <canvas id="myChart" height="120"></canvas>
+            <canvas id="myChart" height="100"></canvas>
         </div>
         <script>
             // Données pour l'histogramme
@@ -60,7 +83,7 @@
             <div class=" d-flex gap-10">  
                 <div>
                     <h5>Statistique de sortie par categories</h5>
-                    <canvas id="myPieChart" width="400" height="200"></canvas>
+                    <canvas id="myPieChart" width="400" height="100"></canvas>
                 </div>
                 <script>
                 // Récupérer l'élément canvas où le diagramme sera dessiné

@@ -12,28 +12,25 @@
                         Ajouter un nouveau fournisseur
                     @endif
             </h3>
-            <a href="{{ route('fourni.fournisseur.index') }}" class="btn btn-primary">Voir les catéries existant</a>
+            <a href="{{ route('fourni.fournisseur.index') }}" class="btn btn-primary">Liste des fournisseurs </a>
         </div>
         <div id="formulaire">
             <form class="p-5 w-50" id="form" action="{{ route($fournisseur->exists ? 'fourni.fournisseur.update' : 'fourni.fournisseur.store', $fournisseur ) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method($fournisseur->exists ? 'put' : 'post')
 
-                
-                <!-- Conteneur pour le champ de téléchargement -->
                 <div class="form-group d-flex justify-content-center">
-                    <!-- Label agissant comme le champ de téléchargement -->
                     <label for="file-input" class="file-label">
-                        <i class="fas fa-camera"></i> <!-- Icône de l'appareil photo (ex : FontAwesome) -->
+                        <i class="fas fa-camera"></i>
                         <input type="file" id="file-input" class="form-control d-none @error('Image') is-invalid @enderror" name="Image" accept=".png, .jpeg, .jpg">
                     </label>
-
                     @error('Image')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
+                <p class="file-text text-center">Choisir une image</p>
 
                 <div>
                     @include('shared.input' , ['type' => 'text','class' => ' col', 'name'=> 'name', 'value'=>$fournisseur->name])  
