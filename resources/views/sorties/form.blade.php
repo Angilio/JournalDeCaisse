@@ -4,6 +4,15 @@
 
 @section('content')
     <div id="contenu" class="w-100 bg-light"> 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @if (session('error'))
             <div class="alert alert-danger">
                 {{ session('error') }}
@@ -17,34 +26,52 @@
                 @csrf
                 @method($sortie->exists ? 'put' : 'post')
 
-                <div class="row mt-4">
-                    @include('shared.date', [
-                        'type' => 'date', 
-                        'placeholder' => 'Date :', // Définition du placeholder ici
-                        'class' => 'col', 
-                        'name'=> 'date', 
-                        'value' => $sortie->date   //Prend en compte une valeur ou null
-                    ])
-                    @include('shared.input' , ['type' => 'text','class' => ' col', 'name'=> 'Context', 'value'=>$sortie->Context]) 
-                    @include('shared.input' , ['type' => 'number', 'placeholder' => 'Quantité','class' => 'col', 'name'=> 'Quantity', 'value'=> $sortie->Quantity])
-                    @include('shared.input' , ['type' => 'number','placeholder' => 'Prix Unitaire','class' => 'col', 'name'=> 'Montant', 'value'=> $sortie->Montant]) 
+                <div id="form-entries">
+                    <div class="entry mt-4">
+                        <div class="row">
+                            @include('shared.date', [
+                                'type' => 'date', 
+                                'placeholder' => 'Date :', // Définition du placeholder ici
+                                'class' => 'col', 
+                                'name'=> 'date[]', 
+                                'value' => $sortie->date   //Prend en compte une valeur ou null
+                            ])
+                            @include('shared.input' , ['type' => 'text','placeholder' => 'Description','class' => ' col', 'name'=> 'Context[]', 'value'=>$sortie->Context]) 
+                            @include('shared.input' , ['type' => 'number', 'placeholder' => 'Quantité','class' => 'col', 'name'=> 'Quantity[]', 'value'=> $sortie->Quantity])
+                            @include('shared.input' , ['type' => 'number','placeholder' => 'Prix Unitaire/Montant','class' => 'col', 'name'=> 'Montant[]', 'value'=> $sortie->Montant]) 
+                        </div>
+                        
+                       <div class="row">
+                            @include('shared.selectsortie' , ['class' => 'col w-100','name'=> 'category_id[]', 'value'=> $sortie->Category()->pluck('id')->toArray() ?? []])
+                            @include('shared.selectbene' , ['class' => 'col w-100','name'=> 'beneficiaire_id[]', 'value'=> $sortie->Beneficiaire()->pluck('id')->toArray() ?? []])
+                            @include('shared.selectperso' , ['class' => 'col w-100','name'=> 'personnel_id[]', 'value'=> $sortie->Personnel()->pluck('id')->toArray() ?? []])
+                       </div>
+                    </div>
                 </div>
 
-                <div class="mt-4 row">
-                    @include('shared.selectsortie' , ['class' => 'col w-100','name'=> 'category', 'value'=> $sortie->Category()->pluck('id')])
-                    @include('shared.selectbene' , ['class' => 'col w-100','name'=> 'beneficiaire_id', 'value'=> $sortie->Beneficiaire()->pluck('id')])
-                    @include('shared.selectperso' , ['class' => 'col w-100','name'=> 'personnel_id', 'value'=> $sortie->Personnel()->pluck('id')])
-                </div>
-
-                <div class="d-flex justify-content-center mt-4">
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-primary" onclick="addEntry()"><i class="fa-solid fa-plus"></i> Ajouter une ligne</button>
                     <button type="submit" class="btn btn-primary">
-                        @if ($sortie->exists)
-                            Modifier
-                        @else
-                            Enregistrer
-                        @endif
+                        {{ $sortie->exists ? 'Modifier' : 'Enregistrer' }}
                     </button>
                 </div>
             </form>       
     </div>
+    <script>
+        let entryCount = 1;  // Nombre de lignes initial
+        const maxEntries = 10;  // Limite maximale de lignes
+
+        function addEntry() {
+            if (entryCount >= maxEntries) {
+                alert("Vous avez atteint la limite de 10 lignes.");
+                return;
+            }
+            
+            const entry = document.querySelector('.entry').cloneNode(true);
+            entry.querySelectorAll('input').forEach(input => input.value = ""); // Réinitialise les valeurs des champs clonés
+            document.getElementById('form-entries').appendChild(entry);
+            entryCount++;
+        }
+    </script>
+    
 @endsection

@@ -6,24 +6,24 @@
     <div id="contenu" class="w-100 bg-light"> 
         <div id="soldDepenseEntre" class="d-flex justify-content-between p-10">
             <div id="sold">
-                <P><i class="fa-solid fa-clipboard"></i></P>
-                <P class="fw-bold">
+                <p><i class="fa-solid fa-clipboard"></i></p>
+                <p class="fw-bold">
                     Sold Actuel <br>
-                    {{ $caisse->Sold }} Ar
-                </P>
+                    Ar {{number_format($caisse->Sold, thousands_separator: ' ')  }}
+                </p>
             </div>
             <div id="Entre">
                 <P><i class="fa-solid fa-truck-fast"></i></P>
-                <P class="fw-bold">
+                <p class="fw-bold">
                     Total des Entrées<br>
-                    {{ $entre }} Ar
-                </P>
+                    Ar {{number_format($entre, thousands_separator: ' ')  }}
+                </p>
             </div>
             <div id="Depense">
                 <P><i class="fa-solid fa-clipboard"></i></P>
                 <P class="fw-bold">
                     Total de Dépense<br>
-                    {{ $sortie }} Ar
+                    Ar {{number_format($sortie, thousands_separator: ' ')  }}
                 </P>
             </div>
         </div>
@@ -31,29 +31,32 @@
             <p class="h4 d-flex justify-content-between">Resumé du mois <span class="bg-light">{{date('d/m/Y')}}</span></p>
             <canvas id="myChart" height="100"></canvas>
         </div>
+        
         <script>
+            // Récupérer les données du contrôleur
+            const soldData = @json($soldData);
+            const entreesData = @json($entreesData);
+            const sortiesData = @json($sortiesData);
+
             // Données pour l'histogramme
             const data = {
-                labels: ['Jan.', 'Fevr.', 'mar.', 'Avr.', 'Mai','Jui.','Juil.','Août', 'Sept.', 'Oct.','Nov.','Déc.'],
+                labels: ['Jan.', 'Fevr.', 'Mar.', 'Avr.', 'Mai','Juin','Juil.','Août', 'Sept.', 'Oct.','Nov.','Déc.'],
                 datasets: [{
                     label: 'Sold',
-                    data: [8,1,21,5,11,24,4,12, 19, 3, 5, 2],
+                    data: soldData,
                     backgroundColor: '#0000ff',
-                    //borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 0,
                     borderRadius: 7
                 },{
                     label: 'Entrées',
-                    data: [4,14,2,15,1,3,18,2, 9, 13, 15, 12],
+                    data: entreesData,
                     backgroundColor: '#6de46d',
-                    //borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 0,
                     borderRadius: 7
                 },{
                     label: 'Sortie',
-                    data: [18,11,12,15,14,13,24,22, 9, 23, 25, 5],
+                    data: sortiesData,
                     backgroundColor: '#e46161e9',
-                    //borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 0,
                     borderRadius: 7
                 }]
@@ -83,47 +86,52 @@
             <div class=" d-flex gap-10">  
                 <div>
                     <h5>Statistique de sortie par categories</h5>
-                    <canvas id="myPieChart" width="400" height="100"></canvas>
+                    <canvas id="myPieChart" width="380" height="100"></canvas>
                 </div>
                 <script>
-                // Récupérer l'élément canvas où le diagramme sera dessiné
-                const ctx = document.getElementById('myPieChart').getContext('2d');
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const sortiesParCategorie = @json($sortiesParCategorie); // Passer les données JSON
 
-                // Créer le diagramme
-                const myPieChart = new Chart(ctx, {
-                    type: 'doughnut', // Type de diagramme (circulaire)
-                    data: {
-                        labels: ['Matériel', 'Transport', 'Produit Menager', 'Comunication'], // Noms des sections
-                        datasets: [{
-                            label: 'Couleurs préférées',
-                            data: [12, 19, 3, 5], // Données pour chaque section
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.7)', // Rouge
-                                'rgba(54, 162, 235, 0.7)', // Bleu
-                                'rgba(255, 206, 86, 0.7)', // Jaune
-                                'rgba(75, 192, 192, 0.7)', // Vert
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)'
-                            ],
-                            borderWidth: 0 // Épaisseur des bordures des sections
-                        }]
-                    },
-                    options: {
-                        responsive: true, // Rend le graphique adaptatif à l'écran
-                        plugins: {
-                            legend: {
-                                position: 'left', // Position de la légende
+                        // Préparer les labels et les données pour le graphique
+                        const labels = Object.keys(sortiesParCategorie);
+                        const values = Object.values(sortiesParCategorie);
+
+                        const ctx = document.getElementById('myPieChart').getContext('2d');
+                        const myPieChart = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'Statistique de sortie par catégories',
+                                    data: values,
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.7)',
+                                        'rgba(54, 162, 235, 0.7)',
+                                        'rgba(255, 206, 86, 0.7)',
+                                        'rgba(75, 192, 192, 0.7)',
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)'
+                                    ],
+                                    borderWidth: 0
+                                }]
                             },
-                            tooltip: {
-                                enabled: true // Active les infobulles
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        position: 'left',
+                                    },
+                                    tooltip: {
+                                        enabled: true
+                                    }
+                                }
                             }
-                        }
-                    }
-                });
+                        });
+                    });
                 </script>
             </div>
             <div class="w-50">

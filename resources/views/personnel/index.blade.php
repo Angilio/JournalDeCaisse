@@ -8,7 +8,6 @@
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
-        
         @endif
         <div id="listBtn">
             <div></div>
@@ -27,8 +26,8 @@
                         <img id="imgProfil" src="{{ asset('/assets/images/pdp.jpeg') }}" alt="">
                     @endif
                     <a href="{{ route('perso.personnel.edit' ,  $p) }}" class="fw-bold">{{ $p->name . ' ' . $p->firstName}}</a>
-                    {{ $p->Contact }} </br>
-                    {{ $p->email }}
+                    <p>{{ $p->Contact }} </p>
+                    <p>{{ $p->email }} </p>
                 </div>
             @endforeach
         </div>

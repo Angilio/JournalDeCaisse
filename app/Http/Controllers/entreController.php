@@ -9,6 +9,7 @@ use App\Models\Entrer;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class entreController extends Controller
@@ -37,29 +38,45 @@ class entreController extends Controller
     }
 
 
-    public function store(EntreFormRequest $request, Caisse $caisse)
+    public function store(EntreFormRequest $request)
     {
         $userId = Auth::id();
-        //Entrer::create($request->validated());
+        $currentMonth = now()->startOfMonth(); // Date de début du mois actuel
+    
+        // Vérifiez si une ligne de caisse existe pour le mois en cours
+        $caisse = Caisse::where('created_at', '>=', $currentMonth)
+                        ->where('created_at', '<', $currentMonth->copy()->addMonth())
+                        ->first();
+    
+        if (!$caisse) {
+            // Récupérez le dernier solde du mois précédent s'il existe
+            $lastCaisse = Caisse::orderBy('created_at', 'desc')->first();
+            $lastSold = $lastCaisse ? $lastCaisse->Sold : 0;
+            dd($lastSold);
+            // Créez une nouvelle ligne pour le mois courant avec le solde précédent comme solde initial
+            $caisse = Caisse::create([
+                'Sold' => $lastSold , // Utilisez le solde du mois précédent
+                'created_at' => now(), // Date actuelle pour la nouvelle ligne
+            ]);
+        }
+    
+        // Créez l'enregistrement dans `Entrer`
         $entrer = Entrer::create([
             'Montant' => $request->validated('Montant'),
             'Description' => $request->validated('Description'),
-            'category_enter_id'=> $request->validated('category_enter_id'),
+            'category_enter_id' => $request->validated('category_enter_id'),
             'user_id' => $userId,
             'date' => $request->validated('date')
         ]);
-
-        $derniereLigne = Entrer::latest('id')->first()->Montant;
-        $caisse = Caisse::first(); // ou bien `find($id)` si vous avez un ID spécifique
-
-        if ($caisse) {
-            $caisse->Sold += $derniereLigne;
-            $caisse->save();
-        } else {
-            throw new Exception("Caisse introuvable.");
-        }
-        return to_route('entre.entre.index')->with('success', 'L\'Entrés modifiée avec succès');
+    
+        // Récupérez le montant de l'entrée et mettez à jour le solde de la caisse
+        $montant = $entrer->Montant;
+        $caisse->Sold += $montant;
+        $caisse->save();
+    
+        return to_route('entre.entre.index')->with('success', 'Entrée enregistrée avec succès');
     }
+    
 
 
     /**

@@ -22,13 +22,28 @@ class SortieFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'Montant' => ['required', 'integer'],
-            'Quantity' => ['required', 'integer'],
+            'date' => 'required|array',
+            'date.*' => 'date',
+            'Context' => 'required|array',
+            'Context.*' => 'string',
+            'Quantity' => 'array',
+            'Quantity.*' => 'numeric|min:1',
+            'Montant' => 'array',
+            'Montant.*' => 'numeric|min:1',
+            'category_id' => 'required|array',
+            'category_id.*' => 'numeric',
+            'beneficiaire_id' => 'required|array',
+            'beneficiaire_id.*' => 'numeric',
+            'personnel_id' => 'required|array',
+            'personnel_id.*' => 'numeric'
+
+            /*'Montant' => ['required', 'integer'],
+            'Quantity' => ['integer'],
             'Context' => ['required', 'min:5'],
             'category_id' => 'required|exists:categories,id',
             'personnel_id' => 'required|exists:personnels,id',
             'beneficiaire_id' => 'required|exists:beneficiaires,id',
-            'date' => ['required']
+            'date' => ['required']*/
         ];
     }
 }

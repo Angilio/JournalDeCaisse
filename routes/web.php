@@ -4,6 +4,7 @@ use App\Http\Controllers\categoryController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\entreController;
 use App\Http\Controllers\fournisseurController;
+use App\Http\Controllers\listController;
 use App\Http\Controllers\personnelController;
 use App\Http\Controllers\sortieController;
 use App\Models\Category_enter;
@@ -42,6 +43,7 @@ Route::middleware('auth')->name('dashboard.')->group( function(){
     Route::resource('dashboard', dashboardController::class)->except(['show','edit','store','update','destroy','create']);
 });
 
+
 /*Route::get('/dashboard', function () {
     //$categoryEntre = Category_enter::create(['name' => 'Mensiel']);
     //$categoryEntre = Category_enter::create(['name' => 'Extraordinaire']);
@@ -76,5 +78,9 @@ Route::middleware('auth')->prefix('entre')->name('entre.')->group( function(){
 });
 
 Route::middleware('auth')->prefix('sortie')->name('sortie.')->group( function(){
-    Route::resource('sortie', sortieController::class)->except(['show']);
+    Route::resource('sortie', sortieController::class);
 });
+Route::get('/showList',[sortieController::class, 'showList'])->name('showList')->middleware('auth');
+
+
+

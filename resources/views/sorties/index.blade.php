@@ -21,6 +21,7 @@
                 <td class="h4">Montant </td>
                 <td class="h4">Description </td>
                 <td class="h4">Categorie </td>
+                <td class="h4">Quantité </td>
                 <td class="h4">Date </td>
                 <td class="h4 text-end">Actions</td>
             </tr>
@@ -34,13 +35,14 @@
                             <td>{{ $bb }}</td>
                         @endif
                     @endforeach
-                    <td>{{ $sortie->Montant }} Ar</td>
+                    <td>{{number_format($sortie->Montant, thousands_separator: ' ' ) }} Ar</td>
                     <td>{{ $sortie->Context }}</td>
                     @foreach ($categories as $k => $v)
                         @if ($k == $sortie->category_id)
                             <td>{{ $v }}</td>
                         @endif
                     @endforeach
+                    <td ><span class="d-flex justify-content-center align-item-center">{{ $sortie->Quantity }}</span></td>
                     <td>{{ $sortie->date }}</td>
                     <td>
                         <div class="d-flex gap-2 justify-content-end">
